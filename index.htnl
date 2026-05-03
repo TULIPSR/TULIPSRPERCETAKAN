@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tulip SR Print</title>
+
+<style>
+body {font-family: Arial; margin:0; background:#f4f6f9;}
+
+header {
+background: linear-gradient(45deg,#0f2027,#203a43,#2c5364);
+color:white;
+padding:25px;
+text-align:center;
+}
+
+.container {padding:15px;}
+
+.card {
+background:white;
+padding:15px;
+margin-bottom:15px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+input, select, textarea {
+width:100%;
+padding:10px;
+margin-top:8px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button {
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:6px;
+background:#25D366;
+color:white;
+font-size:14px;
+}
+
+.total {
+font-weight:bold;
+margin-top:10px;
+color:#2c3e50;
+}
+
+iframe {
+width:100%;
+height:200px;
+border:none;
+border-radius:10px;
+}
+
+.floating {
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:50%;
+text-decoration:none;
+font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>🌷 TULIP SR PRINT</h2>
+<p>Cepat • Murah • Amanah</p>
+<p>Jam 15.00 - 22.00</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h3>🛒 Form Pemesanan</h3>
+
+<input type="text" id="nama" placeholder="Nama">
+
+<select id="jasa" onchange="hitung()">
+<option value="500">Print Hitam Putih (500)</option>
+<option value="1000">Print Warna (1000)</option>
+<option value="2000">Print Full Warna (2000)</option>
+<option value="3000">Pengetikan (3000)</option>
+<option value="25000">Desain (25000)</option>
+<option value="30000">Banner/MMT (30000/m)</option>
+</select>
+
+<input type="number" id="jumlah" placeholder="Jumlah" oninput="hitung()">
+
+<select id="pengiriman">
+<option>Ambil di toko</option>
+<option>Kirim (ongkir nanti)</option>
+</select>
+
+<textarea id="catatan" placeholder="Catatan tambahan"></textarea>
+
+<div class="total" id="total">Total: Rp 0</div>
+
+<button onclick="kirim()">Kirim Pesanan ke WhatsApp</button>
+
+</div>
+
+<div class="card">
+<h3>📤 Upload File</h3>
+<p>Kirim file di sini sebelum chat WA</p>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSdlxWu7D29X28nhQG97cYeIAtfi4T4SMwWv4VWjwpfcldcGmA/viewform?usp=header" target="_blank">
+<button>Kirim File Sekarang</button>
+</a>
+</div>
+
+<div class="card">
+<h3>📍 Lokasi</h3>
+<iframe src="https://maps.google.com/maps?q=fotocopy%20tulip%20jl%20jatikusuman%20mranggen&output=embed"></iframe>
+</div>
+
+</div>
+
+<a class="floating" href="https://wa.me/6285713393771">💬</a>
+
+<script>
+function hitung(){
+let harga = document.getElementById("jasa").value;
+let jumlah = document.getElementById("jumlah").value;
+
+let total = harga * jumlah;
+if(!jumlah) total = 0;
+
+document.getElementById("total").innerText = "Total: Rp " + total;
+}
+
+function kirim(){
+let nama = document.getElementById("nama").value;
+let jasa = document.getElementById("jasa").options[document.getElementById("jasa").selectedIndex].text;
+let jumlah = document.getElementById("jumlah").value;
+let pengiriman = document.getElementById("pengiriman").value;
+let catatan = document.getElementById("catatan").value;
+let total = document.getElementById("total").innerText;
+
+let text = "Halo, saya mau pesan:%0A"+
+"Nama: "+nama+"%0A"+
+"Jasa: "+jasa+"%0A"+
+"Jumlah: "+jumlah+"%0A"+
+"Pengiriman: "+pengiriman+"%0A"+
+total+"%0A"+
+"Catatan: "+catatan;
+
+window.location.href="https://wa.me/6285713393771?text="+text;
+}
+</script>
+
+</body>
+</html>
